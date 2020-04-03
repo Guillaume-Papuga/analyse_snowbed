@@ -1,0 +1,105 @@
+---
+title: "00.data_import"
+author: "Guillaume Papuga"
+date: "20/03/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+library (tidyverse)
+library (reshape2)
+```
+
+```{r}
+# do not forget to set the working directory
+```
+
+# Data import
+```{r data import}
+# raw floristic datasets
+cbnmed = read.csv ("planes.pdlc.csv", 
+                   head = T, row.names = NULL, sep = ";", dec = ",", 
+                   check.names = FALSE) # carefull : conserve the full species name to concatenate with the referential (column name can be invalid)
+
+# taxonomic referential
+ref.taxo = read.csv ("ref.taxo.csv", head = T, row.names = NULL, sep = ";", dec = ",")
+full.sp.list = unique(ref.taxo$nom.short)
+```
+
+
+# Structurating tables
+
+## Planes & Pas de la Case
+```{r data cbnmed}
+####
+# We used the melt-cast process from reshape2 to transform the original dataset into its definitive form
+####
+# melt the dataset
+varnames = colnames(cbnmed)
+cbnmed.melt = melt(cbnmed, id=varnames[1:8]) # melt the dataset : the value (pheno & abundance) is in the "value" column
+
+# change the phenology to binary data
+cbnmed.melt = cbnmed.melt %>%
+  mutate(value = replace(value, value != "",1)) # transform the column "values" to build a 1-0 metric 
+cbnmed.melt$value = as.numeric(cbnmed.melt$value) # transform the column to numeric
+cbnmed.melt = cbnmed.melt %>%
+  replace_na(list(value = 0))# transform NA to 0
+
+# change species name for the correct name (nom.short) in the referential
+ref.taxo.cbnmed = ref.taxo[which(ref.taxo$source=="cbnmed"),] # create a sub-referential containing only the names linked to the dataset
+cbnmed.melt = cbnmed.melt %>%
+  left_join(ref.taxo [,c("nom.saisi", "nom.short")], by = c("variable" = "nom.saisi")) # left join the correct name
+cbnmed.melt = cbnmed.melt %>%
+  mutate(variable = nom.short) 
+cbnmed.melt = cbnmed.melt[,!colnames(cbnmed.melt) == "nom.short"]
+
+# Summerize by combe * placette * quad * variable *year if a species has been recorded under different name between several quadrats in a year
+cbnmed.melt.pa = cbnmed.melt %>%
+  group_by(combe, placette, quad, variable, year) %>%
+  summarize(value.pa = sum(value))
+cbnmed.melt.pa = cbnmed.melt.pa %>%
+  mutate(value.pa = replace(value.pa, value.pa >0, 1)) # shift to presence absence
+
+# verification > select a restricted part of the dataset and compare with the aggregation
+# cbnmed.melt[which(cbnmed.melt$combe == "PdlC" & 
+#                    cbnmed.melt$quad == "A1" &
+#                    cbnmed.melt$year == "2016" &
+#                    cbnmed.melt$variable == "Gentiana alpina"),]
+
+# cast into a new df and add the missing variables (species)
+missing.sp = setdiff(full.sp.list, cbn.melt.pa$variable) # identify missing species from the global list
+cbn.cast.pa = dcast(cbnmed.melt.pa, ... ~ variable) # structure the dataset
+cbn.cast.pa[,missing.sp] = 0 # add the missing variables with []
+cbn.cast.pa = cbn.cast.pa[, c(names(cbn.cast.pa)[1:4], sort(names(cbn.cast.pa[,-(1:4)])))] # sort the species only
+
+# verification : the number of column must equal the number of unique (species)
+
+
+# verification : the number of lines must equal 6 (quadrats) * 6 (lines) * n(years)
+nrow(cbn.cast.pa)
+2*6*6*7
+```
+
+## Autre à venir
+
+# Joining tables
+
+## Create the raw table
+
+```{r raw table}
+# df = 
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Paste the different tables
+
+
+
+
+## Write the table in its associated directory (data>processed)
+
