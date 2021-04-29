@@ -1,0 +1,16 @@
+---
+title: "90_results"
+author: "Guillaume Papuga"
+date: "28/04/2021"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Appendix 1 : 
+```{r cars}
+summary(cars)
+```
+
+

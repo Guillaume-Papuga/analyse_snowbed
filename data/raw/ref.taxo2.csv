@@ -1,0 +1,350 @@
+code;nom.saisi;source;nom.ref.taxo;referentiel;commentaire;nom.short
+67;Agrostis_alpina;ub;;;;Agrostis_alpina
+224;Agrostis_alpina;ref_thomas;;;;Agrostis_alpina
+168;Agrostis_capillaris;cat;;;;Agrostis_capillaris
+225;Agrostis_capillaris;ref_thomas;;;;Agrostis_capillaris
+1;Agrostis rupestris;cbnmed;;;;Agrostis_rupestris
+68;Agrostis_rupestris;ub;;;;Agrostis_rupestris
+139;Agrostis_rupestris;arb;;;;Agrostis_rupestris
+169;Agrostis_rupestris;cat;;;;Agrostis_rupestris
+198;Agrostis_rupestris;por;;;;Agrostis_rupestris
+226;Agrostis_rupestris;ref_thomas;;;;Agrostis_rupestris
+227;Alchemilla_cataleunica;ref_thomas;;;;Alchemilla_cataleunica
+69;Alchemilla_fissa;ub;;;;Alchemilla_fissa
+228;Alchemilla_fissa;ref_thomas;;;;Alchemilla_fissa
+2;Alchemilla flabellata;cbnmed;;;;Alchemilla_flabellata
+229;Alchemilla_flabellata;ref_thomas;;;;Alchemilla_flabellata
+70;Alchemilla_gr._alpina;ub;;;;Alchemilla_gr_alpina
+230;Alchemilla_gr._alpina;ref_thomas;;;;Alchemilla_gr_alpina
+71;Alopecurus_gerardii;ub;;;;Alopecurus_gerardii
+140;Alopecurus_gerardii;arb;;;;Alopecurus_gerardii
+231;Alopecurus_gerardii;ref_thomas;;;;Alopecurus_gerardii
+72;Androsace_carnea;ub;;;;Andrasace_laggeri
+141;Androsace_carnea;arb;;;;Andrasace_laggeri
+170;Androsace_carnea;cat;;;;Andrasace_laggeri
+232;Androsace_carnea;ref_thomas;;;;Andrasace_laggeri
+127;Selinum_pyrenaeum;ub;;;;Epikeros_pyrenaeus
+234;Selinum_pyrenaeum;ref_thomas;;;;Epikeros_pyrenaeus
+3;Anthyllis vulneraria;cbnmed;;;;Anthyllis_vulneraria
+235;Anthyllis_vulneraria;ref_thomas;;;;Anthyllis_vulneraria
+73;Arenaria_biflora;ub;;;;Arenaria_biflora
+236;Arenaria_biflora;ref_thomas;;;;Arenaria_biflora
+74;Arenaria_grandiflora;ub;;;;Arenaria_grandiflora
+237;Arenaria_grandiflora;ref_thomas;;;;Arenaria_grandiflora
+4;Armeria alpina (var. occasiana);cbnmed;;;;Armeria_alpina
+75;Armeria_alpina;ub;;;;Armeria_alpina
+199;Armeria_alpina;por;;;;Armeria_alpina
+240;Armeria_alpina;ref_thomas;;;;Armeria_alpina
+238;Armeria_alpina_var._occasiana;ref_thomas;;;;Armeria_alpina
+142;Armeria_maritima;arb;;;;Armeria_alpina
+171;Armeria_maritima_alpina;cat;;;;Armeria_alpina
+239;Armeria_maritima_alpina;ref_thomas;;;;Armeria_alpina
+5;Armeria muelleri;cbnmed;;;;Armeria_muelleri
+241;Armeria_muelleri;ref_thomas;;;;Armeria_muelleri
+60;Silene rupestris;cbnmed;;;;Atocion_rupestre
+132;Silene_rupestris;ub;;;;Atocion_rupestre
+242;Silene_rupestris;ref_thomas;;;;Atocion_rupestre
+6;Avenula versicolor;cbnmed;;;;Avenula_versicolor
+76;Avenula_versicolor;ub;;;;Avenula_versicolor
+7;Bartsia alpina;cbnmed;;;;Bartsia_alpina
+243;Bartsia_alpina;ref_thomas;;;;Bartsia_alpina
+244;Persicaria_vivipara;ref_thomas;;;;Bistorta_vivipara
+118;Polygonum_viviparum;ub;;;;Bistorta_vivipara
+245;Polygonum_viviparum;ref_thomas;;;;Bistorta_vivipara
+42;Persicaria vivipara;cbnmed;;;;Bistorta_vivipara
+77;Calluna_vulgaris;ub;;;;Calluna_vulgaris
+246;Calluna_vulgaris;ref_thomas;;;;Calluna_vulgaris
+247;Campanula_scheuchzeri_subsp._lanceolata;ref_thomas;;;;Campanula_lanceolata
+8;Campanula scheuchzeri subsp. lanceolata;cbnmed;;;;Campanula_scheuchzeri
+9;Cardamine alpina;cbnmed;;;;Cardamine_alpina
+78;Cardamine_alpina;ub;;;;Cardamine_alpina
+143;Cardamine_alpina;arb;;;;Cardamine_alpina
+172;Cardamine_alpina;cat;;;;Cardamine_alpina
+248;Cardamine_alpina;ref_thomas;;;;Cardamine_alpina
+200;Cardamine_bellidifolia;por;;;;Cardamine_alpina
+249;Cardamine_bellidifolia;ref_thomas;;;;Cardamine_alpina
+10;Cardamine resedifolia;cbnmed;;;;Cardamine_resedifolia
+79;Cardamine_resedifolia;ub;;;;Cardamine_resedifolia
+144;Cardamine_resedifolia;arb;;;;Cardamine_resedifolia
+201;Cardamine_resedifolia;por;;;;Cardamine_resedifolia
+250;Cardamine_resedifolia;ref_thomas;;;;Cardamine_resedifolia
+12;Carex curvula subsp. curvula;cbnmed;;;une seule sous espece;Carex_curvula
+81;Carex_curvula;ub;;;;Carex_curvula
+251;Carex_curvula;ref_thomas;;;;Carex_curvula
+252;Carex_curvula_subsp._curvula;ref_thomas;;;;Carex_curvula
+82;Carex_ericetorum;ub;;;;Carex_ericetorum
+253;Carex_ericetorum;ref_thomas;;;;Carex_ericetorum
+98;Kobresia_myosuroides;ub;;;;Carex_myosuroides
+254;Kobresia_myosuroides;ref_thomas;;;;Carex_myosuroides
+13;Carex parviflora;cbnmed;;;;Carex_parviflora
+80;Carex_atrata_subsp._nigra;ub;;;;Carex_parviflora
+255;Carex_atrata_subsp._nigra;ref_thomas;;;;Carex_parviflora
+256;Carex_parviflora;ref_thomas;;;;Carex_parviflora
+14;Carex pyrenaica;cbnmed;;;;Carex_pyrenaica
+83;Carex_pyrenaica;ub;;;;Carex_pyrenaica
+145;Carex_pyrenaica;arb;;;;Carex_pyrenaica
+173;Carex_pyrenaica;cat;;;;Carex_pyrenaica
+202;Carex_pyrenaica;por;;;;Carex_pyrenaica
+257;Carex_pyrenaica;ref_thomas;;;;Carex_pyrenaica
+203;Carex_sempervirens;por;;;;Carex_sempervirens
+258;Carex_sempervirens;ref_thomas;;;;Carex_sempervirens
+84;Cerastium_cerastoides;ub;;;;Cerastium_cerastoides
+146;Cerastium_cerastoides;arb;;;;Cerastium_cerastoides
+174;Cerastium_cerastoides;cat;;;;Cerastium_cerastoides
+204;Cerastium_cerastoides;por;;;;Cerastium_cerastoides
+259;Cerastium_cerastoides;ref_thomas;;;;Cerastium_cerastoides
+106;Minuartia_sedoides;ub;;;;Cherleria_sedoides
+260;Minuartia_sedoides;ref_thomas;;;;Cherleria_sedoides
+147;Cryptograma_crispa;arb;;;;Cryptograma_crispa
+261;Cryptograma_crispa;ref_thomas;;;;Cryptograma_crispa
+11;Cardamine sp.;cbnmed;;;enleve sp;delete
+47;Polytrichum sp.;cbnmed;;;;delete
+176;Festuca_fosca;cat;;;;Diplachne_fusca
+262;Festuca_fosca;ref_thomas;;;;Diplachne_fusca
+15;Epikeros pyrenaeus;cbnmed;;;;Epikeros_pyrenaeus
+205;Epikeros_pyrenaeus;por;;;;Epikeros_pyrenaeus
+233;Epikeros_pyrenaeus;ref_thomas;;;;Epikeros_pyrenaeus
+85;Epilobium_anagallidifolium;ub;;;;Epilobium_anagallidifolium
+148;Epilobium_anagallidifolium;arb;;;;Epilobium_anagallidifolium
+263;Epilobium_anagallidifolium;ref_thomas;;;;Epilobium_anagallidifolium
+16;Euphrasia minima;cbnmed;;;;Euphrasia_minima
+86;Euphrasia_minima;ub;;;;Euphrasia_minima
+175;Euphrasia_minima;cat;;;;Euphrasia_minima
+206;Euphrasia_minima;por;;;;Euphrasia_minima
+264;Euphrasia_minima;ref_thomas;;;;Euphrasia_minima
+87;Festuca_airoides;ub;;;;Festuca_airoides
+265;Festuca_airoides;ref_thomas;;;;Festuca_airoides
+266;Festuca_supina;ref_thomas;;;;Festuca_airoides
+88;Festuca_eskia;ub;;;;Festuca_eskia
+267;Festuca_eskia;ref_thomas;;;;Festuca_eskia
+17;Festuca glacialis;cbnmed;;;;Festuca_glacialis
+149;Festuca_glacialis;arb;;;;Festuca_glacialis
+177;Festuca_glacialis;cat;;;;Festuca_glacialis
+268;Festuca_glacialis;ref_thomas;;;;Festuca_glacialis
+18;Festuca paniculata subsp. paniculata;cbnmed;;;;Patzkea_paniculata
+19;Festuca rubra subsp. commutata;cbnmed;;;;Festuca_rubra
+269;Festuca_rubra_subsp._commutata;ref_thomas;;;;Festuca_rubra
+89;Galium_cf._pyrenaicum;ub;;;;Galium_pyrenaicum
+270;Galium_cf._pyrenaicum;ref_thomas;;;;Galium_pyrenaicum
+178;Gentiana_acaulis;cat;;;;Gentiana_acaulis
+271;Gentiana_acaulis;ref_thomas;;;;Gentiana_acaulis
+20;Gentiana alpina;cbnmed;;;;Gentiana_alpina
+90;Gentiana_alpina;ub;;;;Gentiana_alpina
+207;Gentiana_alpina;por;;;;Gentiana_alpina
+272;Gentiana_alpina;ref_thomas;;;;Gentiana_alpina
+21;Gentiana nivalis;cbnmed;;;;Gentiana_nivalis
+92;Gentiana_nivalis;ub;;;;Gentiana_nivalis
+273;Gentiana_nivalis;ref_thomas;;;;Gentiana_nivalis
+22;Gentiana schleicheri;cbnmed;;;;Gentiana_schleicheri
+274;Gentiana_schleicheri;ref_thomas;;;;Gentiana_schleicheri
+91;Gentiana_campestris;ub;;;;Gentianella_campetris
+275;Gentiana_campestris;ref_thomas;;;;Gentianella_campetris
+23;Geum montanum;cbnmed;;;;Geum_montanum
+276;Geum_montanum;ref_thomas;;;;Geum_montanum
+24;Gnaphalium supinum;cbnmed;;;;Omalotheca_supina
+277;Avenula_versicolor;ref_thomas;;;;Avenula_versicolor
+25;Helictotrichon sedenense;cbnmed;;;;Helictotrichon_sedenense
+278;Helictotrichon_sedenense;ref_thomas;;;;Helictotrichon_sedenense
+26;Homogyne alpina;cbnmed;;;;Homogyne_alpina
+279;Homogyne_alpina;ref_thomas;;;;Homogyne_alpina
+129;Senecio_leucophyllus;ub;;;;Jacobea_leucophylla
+280;Senecio_leucophyllus;ref_thomas;;;;Jacobea_leucophylla
+27;Jasione crispa;cbnmed;;;;Jasione_crispa
+96;Jasione_crispa;ub;;;;Jasione_crispa
+181;Jasione_crispa;cat;;;;Jasione_crispa
+281;Jasione_crispa;ref_thomas;;;;Jasione_crispa
+208;Juncus_filiformis;por;;;;Juncus_filiformis
+282;Juncus_filiformis;ref_thomas;;;;Juncus_filiformis
+28;Juncus trifidus;cbnmed;;;;Juncus_trifidus
+97;Juncus_trifidus;ub;;;;Juncus_trifidus
+283;Juncus_trifidus;ref_thomas;;;;Juncus_trifidus
+29;Leucanthemopsis alpina subsp. alpina;cbnmed;;;;Leucanthemopsis_alpina
+100;Leucanthemopsis_alpina;ub;;;;Leucanthemopsis_alpina
+152;Leucanthemopsis_alpina;arb;;;;Leucanthemopsis_alpina
+284;Leucanthemopsis_alpina;ref_thomas;;;;Leucanthemopsis_alpina
+182;Leucanthemopsis_alpina_subsp._alpina;cat;;;;Leucanthemopsis_alpina
+285;Leucanthemopsis_alpina_subsp._alpina;ref_thomas;;;;Leucanthemopsis_alpina
+30;Linaria alpina;cbnmed;;;;Linaria_alpina
+101;Linaria_alpina;ub;;;;Linaria_alpina
+153;Linaria_alpina;arb;;;;Linaria_alpina
+183;Linaria_alpina;cat;;;;Linaria_alpina
+286;Linaria_alpina;ref_thomas;;;;Linaria_alpina
+31;Lotus alpinus;cbnmed;;;;Lotus_alpinus
+102;Lotus_alpinus;ub;;;;Lotus_alpinus
+287;Lotus_alpinus;ref_thomas;;;;Lotus_alpinus
+288;Lotus_corniculatus_subsp._alpinus;ref_thomas;;;;Lotus_alpinus
+32;Luzula alpinopilosa subsp. candollei;cbnmed;;;;Luzula_alpinopilosa
+154;Luzula_alpinopilosa;arb;;;;Luzula_alpinopilosa
+289;Luzula_alpinopilosa;ref_thomas;;;;Luzula_alpinopilosa
+290;Luzula_alpinopilosa_subsp._candollei;ref_thomas;;;;Luzula_alpinopilosa
+33;Luzula lutea;cbnmed;;;;Luzula_lutea
+103;Luzula_lutea;ub;;;;Luzula_lutea
+291;Luzula_lutea;ref_thomas;;;;Luzula_lutea
+34;Luzula nutans;cbnmed;;;;Luzula_nutans
+292;Luzula_nutans;ref_thomas;;;;Luzula_pediformis
+35;Luzula spicata (subsp. mutabilis);cbnmed;;;;Luzula_spicata
+104;Luzula_spicata;ub;;;;Luzula_spicata
+210;Luzula_spicata;por;;;;Luzula_spicata
+293;Luzula_spicata;ref_thomas;;;;Luzula_spicata
+184;Luzula_spicata_subsp._monsignatica;cat;;;;Luzula_spicata
+295;Luzula_spicata_subsp._monsignatica;ref_thomas;;;;Luzula_spicata
+294;Luzula_spicata_subsp._mutabilis;ref_thomas;;;;Luzula_spicata
+36;Meum athamanticum;cbnmed;;;;Meum_athamanticum
+296;Meum_athamanticum;ref_thomas;;;;Meum_athamanticum
+162;Saxifraga_stellaris;arb;;;;Micranthes_stellaris
+297;Saxifraga_stellaris;ref_thomas;;;;Micranthes_stellaris
+105;Minuartia_recurva;ub;;;;Minuartia_recurva
+185;Minuartia_recurva;cat;;;;Minuartia_recurva
+298;Minuartia_recurva;ref_thomas;;;;Minuartia_recurva
+38;Murbeckiella pinnatifida;cbnmed;;;;Murbeckiella_pinnatifida
+108;Murbeckiella_pinnatifida;ub;;;;Murbeckiella_pinnatifida
+156;Murbeckiella_pinnatifida;arb;;;;Murbeckiella_pinnatifida
+187;Murbeckiella_pinnatifida;cat;;;;Murbeckiella_pinnatifida
+212;Murbeckiella_pinnatifida;por;;;;Murbeckiella_pinnatifida
+299;Murbeckiella_pinnatifida;ref_thomas;;;;Murbeckiella_pinnatifida
+39;Nardus stricta;cbnmed;;;;Nardus_stricta
+109;Nardus_stricta;ub;;;;Nardus_stricta
+157;Nardus_stricta;arb;;;;Nardus_stricta
+188;Nardus_stricta;cat;;;;Nardus_stricta
+213;Nardus_stricta;por;;;;Nardus_stricta
+300;Nardus_stricta;ref_thomas;;;;Nardus_stricta
+93;Gnaphalium_supinum;ub;;;;Omalotheca_supina
+150;Gnaphalium_supinum;arb;;;;Omalotheca_supina
+179;Gnaphalium_supinum;cat;;;;Omalotheca_supina
+301;Gnaphalium_supinum;ref_thomas;;;;Omalotheca_supina
+214;Omalotheca_supina;por;;;;Omalotheca_supina
+302;Omalotheca_supina;ref_thomas;;;;Omalotheca_supina
+40;Oreochloa elegans;cbnmed;;;;Oreochloa_disticha
+110;Oreochloa_disticha;ub;;;;Oreochloa_disticha
+158;Oreochloa_disticha;arb;;;;Oreochloa_disticha
+189;Oreochloa_disticha;cat;;;;Oreochloa_disticha
+303;Oreochloa_disticha;ref_thomas;;;;Oreochloa_disticha
+215;Oreochloa_elegans;por;;;;Oreochloa_disticha
+304;Oreochloa_elegans;ref_thomas;;;;Oreochloa_disticha
+111;Paronychia_polygonifolia;ub;;;;Paronychia_polygonifolia
+305;Paronychia_polygonifolia;ref_thomas;;;;Paronychia_polygonifolia
+306;Festuca_paniculata_subsp._paniculata;ref_thomas;;;;Patzkea_paniculata
+112;Pedicularis_kerneri;ub;;;;Pedicularis_kerneri
+307;Pedicularis_kerneri;ref_thomas;;;;Pedicularis_kerneri
+41;Pedicularis pyrenaica;cbnmed;;;;Pedicularis_pyrenaica
+113;Pedicularis_pyrenaica;ub;;;;Pedicularis_pyrenaica
+308;Pedicularis_pyrenaica;ref_thomas;;;;Pedicularis_pyrenaica
+43;Phleum alpinum s. s. (à arrête non ciliée);cbnmed;;;;Phleum_alpinum
+114;Phleum_alpinum;ub;;;;Phleum_alpinum
+309;Phleum_alpinum;ref_thomas;;;;Phleum_alpinum
+44;Phyteuma hemisphaericum;cbnmed;;;;Phyteuma_hemisphaericum
+115;Phyteuma_hemisphaericum;ub;;;;Phyteuma_hemisphaericum
+216;Phyteuma_hemisphaericum;por;;;;Phyteuma_hemisphaericum
+310;Phyteuma_hemisphaericum;ref_thomas;;;;Phyteuma_hemisphaericum
+94;Hieracium_breviscapum;ub;;;;Pillosella_breviscapa
+311;Hieracium_breviscapum;ref_thomas;;;;Pillosella_breviscapa
+95;Hieracium_lactucella;ub;;;;Pilosella_lactusella
+312;Hieracium_lactucella;ref_thomas;;;;Pilosella_lactusella
+151;Hieracium_gr._pilosella;arb;;;;Pilosella_officinarum
+180;Hieracium_gr._pilosella;cat;;;;Pilosella_officinarum
+313;Hieracium_gr._pilosella;ref_thomas;;;;Pilosella_officinarum
+116;Plantago_alpina;ub;;;;Plantago_alpina
+314;Plantago_alpina;ref_thomas;;;;Plantago_alpina
+45;Poa alpina;cbnmed;;;;Poa_alpina
+117;Poa_alpina;ub;;;;Poa_alpina
+159;Poa_alpina;arb;;;;Poa_alpina
+190;Poa_alpina;cat;;;;Poa_alpina
+217;Poa_alpina;por;;;;Poa_alpina
+315;Poa_alpina;ref_thomas;;;;Poa_alpina
+316;Poa_anua_subsp._supina;ref_thomas;;;;Poa_alpina
+46;Poa cenisia;cbnmed;;;;Poa_cenisia
+317;Poa_cenisia;ref_thomas;;;;Poa_cenisia
+48;Primula integrifolia;cbnmed;;;;Primula_integrifolia
+119;Primula_integrifolia;ub;;;;Primula_integrifolia
+218;Primula_integrifolia;por;;;;Primula_integrifolia
+318;Primula_integrifolia;ref_thomas;;;;Primula_integrifolia
+191;Ranunculus_alpina;cat;;;;Ranunculus_alpina
+319;Ranunculus_alpina;ref_thomas;;;;Ranunculus_alpina
+120;Ranunculus_pyrenaeus;ub;;;;Ranunculus_pyrenaeus
+160;Ranunculus_pyrenaeus;arb;;;;Ranunculus_pyrenaeus
+320;Ranunculus_pyrenaeus;ref_thomas;;;;Ranunculus_pyrenaeus
+49;Rhododendron ferrugineum;cbnmed;;;;Rhododendron_ferrugineum
+321;Rhododendron_ferrugineum;ref_thomas;;;;Rhododendron_ferrugineum
+50;Sagina saginoides;cbnmed;;;;Sagina_saginoides
+121;Sagina_saginoides;ub;;;;Sagina_saginoides
+322;Sagina_saginoides;ref_thomas;;;;Sagina_saginoides
+51;Salix herbacea;cbnmed;;;;Salix_herbacea
+122;Salix_herbacea;ub;;;;Salix_herbacea
+161;Salix_herbacea;arb;;;;Salix_herbacea
+192;Salix_herbacea;cat;;;;Salix_herbacea
+219;Salix_herbacea;por;;;;Salix_herbacea
+323;Salix_herbacea;ref_thomas;;;;Salix_herbacea
+52;Salix retusa;cbnmed;;;;Salix_retusa
+324;Salix_retusa;ref_thomas;;;;Salix_retusa
+123;Saxifraga_bryoides;ub;;;;Saxifraga_bryoides
+325;Saxifraga_bryoides;ref_thomas;;;;Saxifraga_bryoides
+53;Saxifraga geranioides;cbnmed;;;;Saxifraga_geranioides
+326;Saxifraga_geranioides;ref_thomas;;;;Saxifraga_geranioides
+54;Saxifraga moschata;cbnmed;;;;Saxifraga_moschata
+124;Saxifraga_moschata;ub;;;;Saxifraga_moschata
+327;Saxifraga_moschata;ref_thomas;;;;Saxifraga_moschata
+55;Scorzoneroides pyrenaica;cbnmed;;;;Scorzoneroides_pyrenaica
+99;Leontodon_pyrenaicus;ub;;;;Scorzoneroides_pyrenaica
+209;Leontodon_pyrenaicus;por;;;;Scorzoneroides_pyrenaica
+328;Leontodon_pyrenaicus;ref_thomas;;;;Scorzoneroides_pyrenaica
+329;Scorzoneroides_pyrenaica;ref_thomas;;;;Scorzoneroides_pyrenaica
+56;Sedum alpestre;cbnmed;;;;Sedum_alpestre
+125;Sedum_alpestre;ub;;;;Sedum_alpestre
+163;Sedum_alpestre;arb;;;;Sedum_alpestre
+193;Sedum_alpestre;cat;;;;Sedum_alpestre
+220;Sedum_alpestre;por;;;;Sedum_alpestre
+330;Sedum_alpestre;ref_thomas;;;;Sedum_alpestre
+37;Mucizonia sedoides;cbnmed;;;;Sedum_candollei
+107;Mucizonia_sedoides;ub;;;;Sedum_candollei
+155;Mucizonia_sedoides;arb;;;;Sedum_candollei
+186;Mucizonia_sedoides;cat;;;;Sedum_candollei
+211;Mucizonia_sedoides;por;;;;Sedum_candollei
+331;Mucizonia_sedoides;ref_thomas;;;;Sedum_candollei
+126;Sedum_sp;ub;;;;delete
+332;Sedum_sp;ref_thomas;;;;delete
+57;Sempervivum montanum;cbnmed;;;;Sempervivum_montanum
+128;Sempervivum_montanum;ub;;;;Sempervivum_montanum
+333;Sempervivum_montanum;ref_thomas;;;;Sempervivum_montanum
+334;Sempervivum_montanum;ref_thomas;;;;Sempervivum_montanum
+164;Seseli_nanum;arb;;;;Seseli_nanum
+335;Seseli_nanum;ref_thomas;;;;Seseli_nanum
+58;Sibbaldia procumbens;cbnmed;;;;Silbbaldia_procumbens
+130;Sibbaldia_procumbens;ub;;;;Silbbaldia_procumbens
+165;Sibbaldia_procumbens;arb;;;;Silbbaldia_procumbens
+194;Sibbaldia_procumbens;cat;;;;Silbbaldia_procumbens
+221;Sibbaldia_procumbens;por;;;;Silbbaldia_procumbens
+336;Sibbaldia_procumbens;ref_thomas;;;;Silbbaldia_procumbens
+59;Silene acaulis subsp. acaulis;cbnmed;;;;Silene_acaulis
+131;Silene_acaulis;ub;;;;Silene_acaulis
+222;Silene_acaulis;por;;;;Silene_acaulis
+338;Silene_acaulis;ref_thomas;;;;Silene_acaulis
+337;Silene_acaulis_subsp._acaulis;ref_thomas;;;;Silene_acaulis
+61;Soldanella alpina;cbnmed;;;;Soldanella_alpina
+339;Soldanella_alpina;ref_thomas;;;;Soldanella_alpina
+133;Taraxacum_alpinum;ub;;;;Taraxacum_alpinum
+340;Taraxacum_alpinum;ref_thomas;;;;Taraxacum_alpinum
+134;Taraxacum_dissectum;ub;;;;Taraxacum_dissectum
+341;Taraxacum_dissectum;ref_thomas;;;;Taraxacum_dissectum
+62;Taraxacum pyrenaicum;cbnmed;;;;Taraxacum_pyrenaicum
+342;Taraxacum_pyrenaicum;ref_thomas;;;;Taraxacum_pyrenaicum
+135;Thymus_nervosus;ub;;;;Thymus_nervosus
+343;Thymus_nervosus;ref_thomas;;;;Thymus_nervosus
+63;Trifolium alpinum;cbnmed;;;;Trifolium_alpinum
+136;Trifolium_alpinum;ub;;;;Trifolium_alpinum
+223;Trifolium_alpinum;por;;;;Trifolium_alpinum
+344;Trifolium_alpinum;ref_thomas;;;;Trifolium_alpinum
+64;Trifolium thalii;cbnmed;;;;Trifolium_thalii
+345;Trifolium_thalii;ref_thomas;;;;Trifolium_thalii
+65;Vaccinium myrtillus;cbnmed;;;;Vaccinium_myrtillus
+346;Vaccinium_myrtillus;ref_thomas;;;;Vaccinium_myrtillus
+137;Vaccinium_uliginosum;ub;;;;Vaccinium_uliginosum
+166;Vaccinium_uliginosum;arb;;;;Vaccinium_uliginosum
+195;Vaccinium_uliginosum;cat;;;;Vaccinium_uliginosum
+347;Vaccinium_uliginosum;ref_thomas;;;;Vaccinium_uliginosum
+66;Veronica alpina;cbnmed;;;;Veronica_alpina
+138;Veronica_alpina;ub;;;;Veronica_alpina
+167;Veronica_alpina;arb;;;;Veronica_alpina
+196;Veronica_alpina;cat;;;;Veronica_alpina
+348;Veronica_alpina;ref_thomas;;;;Veronica_alpina
+197;Veronica_nummularia;cat;;;;Veronica_nummularia
+349;Veronica_nummularia;ref_thomas;;;;Veronica_nummularia
