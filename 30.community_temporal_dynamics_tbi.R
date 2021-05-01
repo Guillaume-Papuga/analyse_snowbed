@@ -1,11 +1,21 @@
 #######################################################
 # Project : Analysis of snowbed vegetation dynamics
-# Script : 30.community_temporal_dynamic
-# Analysis of changes through time of plant communities
+# Script : 30.community_temporal_dynamic_tbi
+# Analysis of changes through time of plant communities based on Legendre TBI
 # Authors : Guillaume Papuga & Thomas Masclaux
 # Last update : 28 april 2021
 #######################################################
 
+### Load data 
+df = read.csv(here::here ("data", "processed", "sb_data_cast.csv"), 
+              head = T, sep = ",", dec = ".")
+
+df = df %>% # first we delete the placette n°1 from cre
+  mutate(name.pla = interaction(combe, placette)) %>%
+  filter (name.pla != "cre.1") %>%
+  select (-name.pla)
+
+#######################################################
 #5) Analyses temporelles----
 
 
@@ -19,6 +29,7 @@ theme<-theme(panel.background = element_blank(),
              axis.ticks=element_line(colour="black"),
              plot.margin=unit(c(1,1,1,1),"line"))
 
+##################################################################################################################"
 ### Gain et perte 2019-2013
 
 ## splitting df into two moments of survey table
@@ -69,6 +80,21 @@ plot(tbi_201319P1, s.names=rownames(tbi_201319P1$BCD.mat)  ,  #plot B-C
      pch.loss=19 , 
      pch.gain=15,
      main="Temporal change in beta diversity", xlim=c(0,0.5), ylim=c(0,0.5))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ##W-L species variation 2013-2019
 
@@ -172,7 +198,7 @@ WL_PLOT = ggplot()+
 
 WL_PLOT #plot abundnaces dissimilarities   
 
-
+#############################################################################
 #time dissimilarities
 data = df %>% filter(grepl("ULL", site)) #write site name and run script , data for trajectories analysis
 
