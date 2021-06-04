@@ -131,75 +131,57 @@ adonis(formula = dist~df_pcoa$combe + df_pcoa$placette %in% df_pcoa$combe) ## mu
 
 
 ######################### D. Heatmap graphical representation #############################################
-
-####HEATMAP
-
-rownom<- paste(df_pcoa$site,df_pcoa$placette,df_pcoa$year, sep="_")
-rownames(df_pcoa) = make.names(rownom, unique=TRUE)
-
-fac = df_pcoa[,1:3]
-rownames(fac) = make.names(rownom, unique=TRUE)
-fac=as.data.frame(fac)
-str(fac)
+### Define the data
+data.hm = df
+rownom = paste(data.hm$combe,data.hm$placette,data.hm$year, sep="_") # unique identifier of each line
+rownames(data.hm) = make.names(rownom, unique=TRUE)
 
 
-df_pcoa = t(df_pcoa[,4:100])
-colnames(df_pcoa)=make.names(rownom, unique=TRUE)
 
+### Create the factor to categorize data 
+fac = data.hm[,1:2]
+fac$placette <- factor(fac$placette, levels = c("1", "2", "3")) # transform placette into factor
 
-facDS = select(fac,site,placette)
-str(facDS)
-rownames(facDS) <- colnames(df_pcoa)
-colnames(df_pcoa)<- rownames(facDS)
+### Create the two color vectors
+# For sites (combe)
+combecol <- c("#FF3333", "#FFCC00", "#669900", "#00CC66", "#009999", "#0066CC", "#CC66FF", "white" )
+names(combecol) <- levels(fac$combe)
 
-# color per level
-facDS$site <- factor(facDS$site, levels = c("ARB", "CASE", "CAT", "CRE", "PLA", "POR", "RAT", "ULL"))
-sitecol <- c("#FF3333", "#FFCC00", "#669900", "#00CC66", "#009999", "#0066CC", "#CC66FF", "white" )
-names(sitecol) <- levels(facDS$site)
-
-facDS$placette <- factor(facDS$placette, levels = c("1", "2", "3"))
+# For placettes
 placol <- c("#CCCCCC", "#666666", "#000000")
-names(placol) = levels(facDS$placette)
+names(placol) = levels(fac$placette)
 
-# Add to a list, where names match those in factors dataframe
-Colour <- list(
-  site = sitecol, placette = placol)
+# Create a list
+colour.hm <- list(
+  combe = combecol, placette = placol)
 
-df_pcoa = df 
+### Select the species that contribute to the clustering pattern (procedure based on mvabund method)
+# create a mvabund object
+dat.mva = mvabund(data.hm[,4:ncol(data.hm)]) 
+plot(dat.mva) # plot it
 
-dat.mva = mvabund(df_pcoa[,4:99])
-plot(dat.mva)
+# Multivariate model
+dat.nb = manyglm(dat.mva ~ combe + placette%in%combe, data = data.hm) # define the model (nested variables)
+dat.aov = anova.manyglm(dat.nb, p.uni = "unadjusted", nBoot = 500) # compute a significance test of variables
+species.dif = which(dat.aov$uni.p["combe",] < 0.05 & # select species that contribute to inter-site difference...
+                    dat.aov$uni.p["combe:placette",] > 0.05) # but show no intra-site pattern (controled for)
 
-dat.nb <- manyglm(dat.mva ~ site*placette, data = fac)
-dat.aov <- anova.manyglm(dat.nb, p.uni = "unadjusted", nBoot = 500) ### record de 8 minutes de chargement
-dat.aov$uni.p
-summary(dat.aov)
-SpeciesDiffs <- which(dat.aov$uni.p["site",] < 0.05 & dat.aov$uni.p["site:placette",] > 0.05)
-xx = df_pcoa[,SpeciesDiffs ]
-xx = decostand(xx[,4:73], method="hellinger")
-tt = xx
-rownames(tt) = rownom
-tt = t(tt)
+### Extract a subset of the dataset that matches the selection
+data.hm.sign.sp = data.hm[,species.dif] # select the corresponding species in the original dataset
+data.hm.sign.sp.h = decostand(data.hm.sign.sp[,-c(1,2)], method="hellinger")  # transform the dataset with Hellinger distance
 
+### Compute distance matrices (Bray-Curtis) [for side dendrograms]
+combe.dist = vegdist(data.hm.sign.sp.h, "bray", diag = T) # between-sites (combe) distance
+taxa.dist = vegdist(t(data.hm.sign.sp.h), "bray", diag = T) # between-variables (species) distance
 
-# site distance matrix (Bray-Curtis)
-siteDist <- vegdist(t(tt), "bray", diag = T)
-# taxa distance matrix (Bray-Curtis)
-taxaDist <- vegdist(tt, "bray", diag = T)
-
-pp = pheatmap(tt, annotation_col = facDS, 
-              annotation_colors = Colour,
-              clustering_distance_rows = taxaDist,
-              clustering_distance_cols = siteDist,
-              clustering_method = 'ward.D',
+### Create the plot
+hm.plot = pheatmap(t(data.hm.sign.sp.h), # dataset
+              annotation_col = fac, 
+              annotation_colors = colour.hm, # list of colours
+              clustering_distance_rows = taxa.dist, # distance matrix btw species
+              clustering_distance_cols = combe.dist, # distance matrix btw sites
+              clustering_method = 'ward.D', 
               fontsize = 8, cutree_cols = 6, cutree_rows = 4, 
               show_colnames = F)
-
-
-
-
-
-
-
 
 
