@@ -132,7 +132,12 @@ adonis(formula = dist~df_pcoa$combe + df_pcoa$placette %in% df_pcoa$combe) ## mu
 
 ######################### D. Heatmap graphical representation #############################################
 ### Define the data
-data.hm = df
+data.hm = df %>% # first we delete the placette n°1 from cre
+  mutate(name.pla = interaction(combe, placette)) %>%
+  filter (name.pla != "cre.1") %>%
+  select (-name.pla)
+
+
 rownom = paste(data.hm$combe,data.hm$placette,data.hm$year, sep="_") # unique identifier of each line
 rownames(data.hm) = make.names(rownom, unique=TRUE)
 
