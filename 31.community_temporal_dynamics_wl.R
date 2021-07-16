@@ -19,9 +19,13 @@ df = df %>% # first we delete the placette n°1 from cre
 ### Create the matrix
 # transform the original dataset
 varnames = colnames(df)
+
+start_year = 2013
+end_year = 2019
+
 df_melt = melt (df, id=varnames[1:3]) %>% # first change to long format
-  filter (year == 2013 | year == 2019) %>% # and keep observation based on 2 dates, 2013 and 2019
-  filter (!(year == 2013 & value == 0)) %>% # delete the species not observed in 2013
+  filter (year == start_year | year == end_year) %>% # and keep observation based on 2 dates, 2013 and 2019
+  filter (!(year == start_year & value == 0)) %>% # delete the species not observed in 2013
   dcast (... ~ year) # create columns based the two selected years
 
 colnames (df_melt) [4:5] = c("start", "end")
@@ -100,11 +104,28 @@ df_synth = df_synth %>%
   drop_na() %>% #remove lines without data
   arrange(desc(boot_ave)) # %>% #sort in descendind order
 
+# Create the column "winner stable loser - WSL"¨
+wsl = function (x, y){
+if(x > 0){
+  print("W")
+} else {
+  if (y < 0){
+    print ("L")
+  } else {
+    print ("S")
+  }
+}}
+
+df_synth = df_synth %>%
+  mutate (wsl = NA) # create the column WSL
+for (i in 1:nrow(df_synth)){ # use a loop to fill the column with the correct status (winner, stable, loser)
+  x = df_synth[i,"boot_low_bnd"]
+  y = df_synth[i,"boot_upp_bnd"]
+  df_synth[i, "wsl"] = wsl(x, y)
+  }
   
-  
-  
-### Plot
-theme<-theme(panel.background = element_blank(),
+# Plot
+theme = theme(panel.background = element_blank(),
              panel.border=element_rect(fill=NA),
              panel.grid.major = element_blank(),
              panel.grid.minor = element_blank(),
@@ -112,147 +133,27 @@ theme<-theme(panel.background = element_blank(),
              axis.title.y = element_text(size = 16),
              axis.title.x = element_text(size = 16),
              axis.text.x=element_text(colour="black"),
-             axis.text.y=element_text(size =16),
+             axis.text.y=element_text(size =10),
              axis.ticks=element_line(colour="black"),
-             plot.margin=unit(c(1,1,1,1),"line"))
-
-  
-##############################""""
-selec_esp = as.data.frame.matrix(table(df_melt$variable, df_melt$combe)) %>%
-  mutate (tot_plac = rowSums(...))
-
-
-##W-L species variation 2013-2019
-
-theme<-theme(panel.background = element_blank(),
-             panel.border=element_rect(fill=NA),
-             panel.grid.major = element_blank(),
-             panel.grid.minor = element_blank(),
-             strip.background=element_blank(),
-             axis.title.y = element_text(size = 16),
-             axis.title.x = element_text(size = 16),
-             axis.text.x=element_text(colour="black"),
-             axis.text.y=element_text(size =16),
-             axis.ticks=element_line(colour="black"),
-             plot.margin=unit(c(1,1,1,1),"line"))
+             plot.margin=unit(c(1,1,1,1),"line"),
+             legend.position = "none")
 
 wl = ggplot()+ 
-  geom_point(data=df_synth, aes(x = boot_ave, y = reorder (species, boot_ave), size = 4))  +
+  theme + 
+  geom_point(data=df_synth, aes(x = boot_ave, y = reorder (species, boot_ave), colour = factor(wsl), size = 3, stroke = 1))  +
   geom_errorbar(data=df_synth, 
               aes( y=reorder(species, boot_ave), 
                    xmin= boot_low_bnd, 
-                   xmax = boot_upp_bnd), 
-              size = 0.5, width=0.5) # +
+                   xmax = boot_upp_bnd, 
+                   colour = factor(wsl)), 
+              size = 1, width=0.5) +
+  scale_color_manual (values = c("firebrick3", "grey", "chartreuse4")) +
+  geom_vline(xintercept = 0, linetype = "dotted", col = "red") + 
+  xlim(-1,1) + 
+  ylab("Species") + xlab("Variation") 
   
-scale_shape_manual(values = c(19, 1))+
-  
-  scale_color_manual(name="legends", 
-                     labels = c("deprived", "winner"), 
-                     values = c("deprived"="firebrick3", "winner"="chartreuse4")) +
-  
-  scale_fill_manual(values="white")+
-  
-  theme + 
-  ylim(-1,1) + 
-  coord_flip()+
-  xlab("Species") + ylab("variation") +
-  scale_x_discrete(position = "top") +
-  geom_hline(yintercept = 0, linetype = "dotted")
-
-WL_PLOT #plot abundnaces dissimilarities   
+wl
 
 
 
-
-
-#####################################################################""
-
-
-# melt 2013 and 2019
-m.m1 = melt(m2013)
-colnames (m.m1) [3] = "v1"
-m.m2 = melt(m2019)
-colnames (m.m2) [3] = "v2"
-
-# join
-j.m = full_join (m.m1, m.m2) %>%
-  mutate(verif = v1 == v2) %>% #on v?rifie si la variation est r?elle sur une placette
-  mutate(val = v2 - v1)
-
-t = j.m %>% filter(verif != TRUE | v1 !=0)
-t
-
-t_selct = t %>% group_by(Var2) %>% filter(n() >= 4)
-t_selct = as.data.frame(t_selct)
-
-# test de normalit?
-test = do.call("rbind", with(t_selct, 
-                             tapply(val, Var2,
-                                    function(x) unlist(shapiro.test(x)[c("statistic", "p.value")])))) #test de normalit?
-test = as.data.frame(test) # conversion du tableau avant assignation
-test$significance<- ifelse(test$p.value >0.05, "*","no_sign") # on assigne les distributions significatives
-test$species = row.names(test) # on renomme les lignes
-
-
-x = t %>%  dplyr::group_by(Var2) %>% dplyr::summarize(m.test = mean(val)) #moyenne des valeurs par esp?ces
-
-ic = t %>% dplyr::group_by(Var2) %>% dplyr::summarize(m.test = 1.96*std.error(val)) # erreur standard par esp?ces
-
-colnames(ic)[1] = "species" # renommer la colonne
-colnames(ic)[2]= "sd"       # renommer la colonne
-ic$species = as.character(ic$species)
-
-
-x$WL<- ifelse(x$m.test >0, "winner","deprived") # assignation des esp?ces perdantes et gagnantes
-
-x = x %>% arrange(desc(m.test)) #on range par odre d?croissant pour pr?parer le graphique
-
-##seuil de repr?sentativit? des esp?ces sur les placettes
-barplot(sort(colSums(table(t[,1:2])))) 
-
-tt =  data.frame(sort(colSums(table(t[,1:2])))) #compter N placettes o? une esp?ce est vue
-tt$species = row.names(tt) #nom esp?ce en t?te de ligne
-
-species = which(tt$sort.colSums.table.t...1.2....>7) #seuil ? 7 ?chantillons
-tt = tt[species, ]
-tt$species = as.character(tt$species)
-colnames(x)[1] <- "species"
-x$species = as.character(x$species)
-
-
-xt = semi_join(x,tt, by = "species") #fusion en base de construction du plot
-
-xt = left_join (xt, test, "species")
-xt=left_join(xt, ic, "species")
-
-
-##plot W-L
-
-WL_PLOT = ggplot()+ 
-  
-  geom_point(data=xt, aes( x=reorder(species, m.test),
-                           y = m.test, 
-                           shape = significance, 
-                           color = WL), size = 4) +
-  scale_shape_manual(values = c(19, 1))+
-  
-  scale_color_manual(name="legends", 
-                     labels = c("deprived", "winner"), 
-                     values = c("deprived"="firebrick3", "winner"="chartreuse4")) +
-  
-  scale_fill_manual(values="white")+
-  geom_errorbar(data=xt, 
-                aes( x=reorder(species, m.test), 
-                     ymin= m.test-sd, 
-                     ymax = m.test+sd, color = WL), 
-                size = 0.5, width=0.5) +
-  
-  theme + 
-  ylim(-1,1) + 
-  coord_flip()+
-  xlab("Species") + ylab("variation") +
-  scale_x_discrete(position = "top") +
-  geom_hline(yintercept = 0, linetype = "dotted")
-
-WL_PLOT #plot abundnaces dissimilarities   
 

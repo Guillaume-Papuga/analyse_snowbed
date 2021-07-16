@@ -28,7 +28,8 @@ library(pheatmap)
 library(adespatial)
 library(plotrix)
 library(here)
-
-
+library(boot)
+library(tibble)
+library(imager)
 
 

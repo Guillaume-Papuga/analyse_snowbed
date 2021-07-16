@@ -8,9 +8,13 @@ output: html_document
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# Appendix 1 : 
+ 
+# Figure X : temporal dissimilarity
 ```{r cars}
-summary(cars)
+t = imager::load.image(here::here ("outputs", "figures", "temp.dissi.jpg"))
+plot(t, axes = FALSE)
+
 ```
+Analyse the plot here.
 
 
