@@ -346,5 +346,8 @@ temp.dissi = plot_grid(site.plot_cat, bcd.plot_cat,
   draw_label("RAT", fontface = 'bold', x = 0, y = 0.26, angle = 90, vjust = 0, size = 12) +
   draw_label("ULL", fontface = 'bold', x = 0, y = 0.1, angle = 90, vjust = 0, size = 12)
 
-
+### Save the plot
+jpeg (here::here ("outputs", "figures", "temp.dissi.jpg")) # Open jpeg file
+temp.dissi # Create the plot
+dev.off() # 3. Close the file
 # xlab("year of surveys") + ylab("Ruzicka dissimilarity") +  # first serie of plots

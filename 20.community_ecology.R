@@ -6,6 +6,40 @@
 # Last update : 28 april 2021
 #######################################################
 
+### Load data 
+df.flo = read.csv(here::here ("data", "processed", "sb_data_cast.csv"), 
+                  head = T, sep = ",", dec = ".")
+
+df.clim = read.csv(here::here ("data", "processed", "clim.data.csv"), 
+                   head = T, sep = ",", dec = ".")
+
+######################### A. Select ecological variables ######################################
+### 1. Multivariate analysis 
+res.pca = dudi.pca(df.clim %>% select (-combe), scannf = FALSE, nf = 2) 
+
+# Compute weight of axes and species on axes
+axes.wt = round (res.pca$eig / sum(res.pca$eig)*100, 1)
+var.wt = round(res.pca$co, 1)
+
+# Draw a plot
+s.corcircle(res.pca$co)
+
+### 2. Pairwise correlation
+cor.data.clim = cor (df.clim %>% select (-combe))
+c.plot = corrplot(cor.data.clim, method = "circle", 
+                  tl.col="black", tl.srt=45, tl.cex = 0.4)
+
+
+### 3. Selection
+
+
+
+######################### B. Run redundancy analysis ######################################
+### 1. Multivariate analysis 
+
+
+######################""""""" Thomas Masclaux #############################"
+
 #4) Community ecology----
 
 species = df %>% filter(grepl('2019', year)) # on s?lectionne la flore 2019

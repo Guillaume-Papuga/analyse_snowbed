@@ -31,5 +31,8 @@ library(here)
 library(boot)
 library(tibble)
 library(imager)
-
-
+library(FactoMineR)
+library(raster)
+library(sp)
+library(rgdal)
+library(corrplot)
