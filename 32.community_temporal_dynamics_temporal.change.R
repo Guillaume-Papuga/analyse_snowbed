@@ -13,7 +13,7 @@ df = read.csv(here::here ("data", "processed", "sb_data_cast.csv"),
 df = df %>% # first we delete the placette n°1 from cre
   mutate(name.pla = interaction(combe, placette)) %>%
   filter (name.pla != "cre.1") %>%
-  select (-name.pla)
+  dplyr::select (-name.pla)
 
 ########################################################
 
@@ -40,7 +40,7 @@ for (i in site) {
   # create a vector for years with observations
   survey_yr = unique (df %>% 
                         filter (combe == i) %>% 
-                        select (year) %>% 
+                        dplyr::select (year) %>% 
                         filter (year != 2013))$year
   
   # Run a second loop for each pair of survey
@@ -53,10 +53,10 @@ for (i in site) {
     # fit the two table
     common_quad = intersect(start_yr$name, survey$name) # list of common quadrat
     m_start = subset(start_yr, name %in% common_quad) %>%
-      select (-combe, -placette, -year, -name) # delete useless columns
+      dplyr::select (-combe, -placette, -year, -name) # delete useless columns
     
     m_year = subset(survey, name %in% common_quad) %>%
-      select (-combe, -placette, -year, -name) # delete useless columns
+      dplyr::select (-combe, -placette, -year, -name) # delete useless columns
 
     # compute the tbi index
     tbindex = TBI(m_start, m_year, 
@@ -124,7 +124,7 @@ for (i in site) {
         nrow (mat %>% filter(placette == 2)) !=0) {
       tab = mat %>%
         filter (placette == 1  | placette == 2) %>% # select quadrat 1 and 2
-        select (-combe, -placette, -year)
+        dplyr::select (-combe, -placette, -year)
       dist.quad = ecodist::distance(tab, "bray-curtis") # create a distance matrix
       
       # store the value
@@ -143,7 +143,7 @@ for (i in site) {
         nrow (mat %>% filter(placette == 3)) !=0) {
       tab = mat %>%
         filter (placette == 2  | placette == 3) %>% # select quadrat 1 and 2
-        select (-combe, -placette, -year)
+        dplyr::select (-combe, -placette, -year)
       dist.quad = ecodist::distance(tab, "bray-curtis") # create a distance matrix
       
       # store the value
@@ -162,7 +162,7 @@ for (i in site) {
         nrow (mat %>% filter(placette == 3)) !=0) {
       tab = mat %>%
         filter (placette == 1  | placette == 3) %>% # select quadrat 1 and 2
-        select (-combe, -placette, -year)
+        dplyr::select (-combe, -placette, -year)
       dist.quad = ecodist::distance(tab, "bray-curtis") # create a distance matrix
       
       # store the value
@@ -201,18 +201,6 @@ tot_surv = expand.grid(unique (inter.quad.dist$combe),
 
 #######################################################
 ### PLOT 1
-### Define the theme of plots
-# theme<-theme(panel.background = element_blank(),
-#              panel.border=element_rect(fill=NA),
-#              panel.grid.major = element_blank(),
-#              panel.grid.minor = element_blank(),
-#              strip.background=element_blank(),
-#              axis.text.x=element_text(colour="black"),
-#              axis.text.y=element_text(colour="black"),
-#              axis.ticks=element_line(colour="black"),
-#              plot.margin=unit(c(1,1,1,1),"line"))
-
-
 theme<-theme(panel.background = element_blank(),
              panel.border=element_rect(fill=NA),
              panel.grid.major = element_blank(),
@@ -225,28 +213,23 @@ theme<-theme(panel.background = element_blank(),
              axis.title.y = element_blank(),
              plot.margin=unit(c(1,1,1,1),"line"))
 
-
-# axis.title.x=element_blank(),
-# axis.text.x=element_blank(),
-# axis.ticks.x=element_blank()
-
 ### Create the first serie of plots : BCD 
 site = as.vector(unique (bcd$combe))
 
 for (i in site) {
   q1 = ggplot() + #premiere couche
-    geom_point(data = bcd[which(bcd$combe == i),], aes(x = period, y = b), colour = "red", size=3, shape = 16) + 
+    geom_point(data = bcd[which(bcd$combe == i),], aes(x = period, y = b), colour = "firebrick3", size=2, shape = 16) + 
     scale_y_continuous(limits= c(0,.6), breaks = seq(0,0.6,0.2)) +
-    geom_line(data = bcd[which(bcd$combe == i),], aes(x = period, y = b, group=1), colour = "red")+
+    geom_line(data = bcd[which(bcd$combe == i),], aes(x = period, y = b, group=1), colour = "firebrick3")+
     theme 
   
   q2 = ggplot() + # seconde couche
-    geom_point(data = bcd[which(bcd$combe == i),], aes(x = period, y = c), colour = "skyblue", size=3, shape=17) + 
+    geom_point(data = bcd[which(bcd$combe == i),], aes(x = period, y = c), colour = "lightskyblue", size=2, shape=17) + 
     scale_y_continuous(limits= c(0,.6), breaks = seq(0,0.6,0.2)) +
-    geom_line(data = bcd[which(bcd$combe == i),], aes(x = period, y = c, group=2), colour = "skyblue") 
+    geom_line(data = bcd[which(bcd$combe == i),], aes(x = period, y = c, group=2), colour = "lightskyblue") 
   
   q3 = ggplot() + #troisieme couche
-    geom_point(data = bcd[which(bcd$combe == i),], aes(x = period, y = d), colour = "black", size=3, shape=15) + 
+    geom_point(data = bcd[which(bcd$combe == i),], aes(x = period, y = d), colour = "black", size=2, shape=15) + 
     scale_y_continuous(limits= c(0,.6), breaks = seq(0,0.6,0.2)) +
     geom_line(data = bcd[which(bcd$combe == i),], aes(x = period, y = d, group=3), colour = "black") 
   
@@ -269,9 +252,9 @@ for (i in site) {
   # Plot 1-2
   if (nrow (mat.plot %>% filter(comp == "1-2")) !=0) {
     inter.plot_12 = ggplot() + 
-      geom_point(data = mat.plot[which (mat.plot$comp == "1-2"),], aes(x = year, y = distance), colour = "red", size=3, shape = 16) +  
+      geom_point(data = mat.plot[which (mat.plot$comp == "1-2"),], aes(x = year, y = distance), colour = "lightsalmon2", size=2, shape = 16) +  
       scale_y_continuous(limits= c(0,1), breaks = seq(0,1,.5)) +
-      geom_line(data = mat.plot[which (mat.plot$comp == "1-2"),], aes(x = year, y = distance, group=1), colour = "red")+
+      geom_line(data = mat.plot[which (mat.plot$comp == "1-2"),], aes(x = year, y = distance, group=1), colour = "lightsalmon2")+
       theme(axis.title.x = element_blank())+
       theme(axis.title.y = element_blank(), axis.text.y=element_text(size =16), axis.text.x=element_text(size =16)) +
       theme 
@@ -280,9 +263,9 @@ for (i in site) {
   # Plot 2-3
   if (nrow (mat.plot %>% filter(comp == "2-3")) !=0) {
     inter.plot_23 = ggplot() + 
-      geom_point(data = mat.plot[which (mat.plot$comp == "2-3"),], aes(x = year, y = distance), colour = "blue", size=3, shape = 16) +  
+      geom_point(data = mat.plot[which (mat.plot$comp == "2-3"),], aes(x = year, y = distance), colour = "royalblue3", size=2, shape = 16) +  
       scale_y_continuous(limits= c(0,1), breaks = seq(0,1,.5)) +
-      geom_line(data = mat.plot[which (mat.plot$comp == "2-3"),], aes(x = year, y = distance, group=1), colour = "blue")+
+      geom_line(data = mat.plot[which (mat.plot$comp == "2-3"),], aes(x = year, y = distance, group=1), colour = "royalblue3")+
       theme(axis.title.x = element_blank())+
       theme(axis.title.y = element_blank(), axis.text.y=element_text(size =16), axis.text.x=element_text(size =16)) +
       theme 
@@ -291,9 +274,9 @@ for (i in site) {
   # Plot 1-3
   if (nrow (mat.plot %>% filter(comp == "1-3")) !=0) {
     inter.plot_13 = ggplot() + 
-      geom_point(data = mat.plot[which (mat.plot$comp == "1-3"),], aes(x = year, y = distance), colour = "green", size=3, shape = 16) +  
+      geom_point(data = mat.plot[which (mat.plot$comp == "1-3"),], aes(x = year, y = distance), colour = "chartreuse4", size=2, shape = 16) +  
       scale_y_continuous(limits= c(0,1), breaks = seq(0,1,.5)) +
-      geom_line(data = mat.plot[which (mat.plot$comp == "1-3"),], aes(x = year, y = distance, group=1), colour = "green")+
+      geom_line(data = mat.plot[which (mat.plot$comp == "1-3"),], aes(x = year, y = distance, group=1), colour = "chartreuse4")+
       theme(axis.title.x = element_blank())+
       theme(axis.title.y = element_blank(), axis.text.y=element_text(size =16), axis.text.x=element_text(size =16)) +
       theme 
@@ -329,7 +312,7 @@ for (i in site) {
 
 
 ### Assemble the global plot
-temp.dissi = plot_grid(site.plot_cat, bcd.plot_cat,
+temp.dissi = cowplot::plot_grid(site.plot_cat, bcd.plot_cat,
                        site.plot_cre, bcd.plot_cre, 
                        site.plot_pdlc, bcd.plot_pdlc, 
                        site.plot_pla, bcd.plot_pla,
@@ -337,17 +320,20 @@ temp.dissi = plot_grid(site.plot_cat, bcd.plot_cat,
                        site.plot_ull, bcd.plot_ull, 
                        nrow = 6, ncol = 2) + 
   theme(plot.margin = unit(c(1,0.5,0.5,1), "cm")) + # add some extra space to write everything
-  draw_label("Intraplot dissimilarity", fontface = 'bold', x = 0.13, y = 1, hjust = 0) + 
-  draw_label("Loss, gain, dissimilarity", fontface = 'bold', x = 0.63, y = 1, hjust = 0) + 
-  draw_label("CAT", fontface = 'bold', x = 0, y = 0.925, angle = 90, vjust = 0, size = 12) +
-  draw_label("CRE", fontface = 'bold', x = 0, y = 0.75, angle = 90, vjust = 0, size = 12) +
-  draw_label("PDLC", fontface = 'bold', x = 0, y = 0.59, angle = 90, vjust = 0, size = 12) +
-  draw_label("PLA", fontface = 'bold', x = 0, y = 0.43, angle = 90, vjust = 0, size = 12) +
-  draw_label("RAT", fontface = 'bold', x = 0, y = 0.26, angle = 90, vjust = 0, size = 12) +
-  draw_label("ULL", fontface = 'bold', x = 0, y = 0.1, angle = 90, vjust = 0, size = 12)
+  cowplot::draw_label("Interplot dissimilarity", fontface = 'bold', x = 0.13, y = 1, hjust = 0) + 
+  cowplot::draw_label("Loss, gain, dissimilarity", fontface = 'bold', x = 0.63, y = 1, hjust = 0) + 
+  cowplot::draw_label("CAT", fontface = 'bold', x = 0, y = 0.925, angle = 90, vjust = 0, size = 12) +
+  cowplot::draw_label("CRE", fontface = 'bold', x = 0, y = 0.75, angle = 90, vjust = 0, size = 12) +
+  cowplot::draw_label("PDLC", fontface = 'bold', x = 0, y = 0.59, angle = 90, vjust = 0, size = 12) +
+  cowplot::draw_label("PLA", fontface = 'bold', x = 0, y = 0.43, angle = 90, vjust = 0, size = 12) +
+  cowplot::draw_label("RAT", fontface = 'bold', x = 0, y = 0.26, angle = 90, vjust = 0, size = 12) +
+  cowplot::draw_label("ULL", fontface = 'bold', x = 0, y = 0.1, angle = 90, vjust = 0, size = 12)
 
 ### Save the plot
-jpeg (here::here ("outputs", "figures", "temp.dissi.jpg")) # Open jpeg file
-temp.dissi # Create the plot
+jpeg (here::here ("outputs", "figures", "figure_temp.dissi.jpg")) # Open jpeg file
+print(temp.dissi)
 dev.off() # 3. Close the file
-# xlab("year of surveys") + ylab("Ruzicka dissimilarity") +  # first serie of plots
+
+pdf(here::here("outputs", "figures", "figure_temp.dissi.pdf"))
+print(temp.dissi)
+dev.off()

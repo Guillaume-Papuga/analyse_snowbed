@@ -13,7 +13,7 @@ df = read.csv(here::here ("data", "processed", "sb_data_cast.csv"),
 df = df %>% # first we delete the placette n°1 from cre
   mutate(name.pla = interaction(combe, placette)) %>%
   filter (name.pla != "cre.1") %>%
-  select (-name.pla)
+  dplyr::select (-name.pla)
 
 ######################### Temporal Beta Diversity Index #############################################
 
@@ -25,13 +25,13 @@ end_year = 2019
 m_start = df %>% 
   filter (year == start_year) %>% # select the appropriate year
   unite(name_quad, c(combe, placette), sep = "_", remove = FALSE) %>% # create the rowname..
-  select (-combe, -placette, -year) # delete other variables
+  dplyr::select (-combe, -placette, -year) # delete other variables
 
 # For end
 m_end = df %>% 
   filter (year == end_year) %>% # select the appropriate year
   unite(name_quad, c(combe, placette), sep = "_", remove = FALSE) %>% # create the rowname..
-  select (-combe, -placette, -year) # delete other variables
+  dplyr::select (-combe, -placette, -year) # delete other variables
 
 # Find the quadrat that have been sensused the two years
 quad.list = as.vector (unique (inner_join(m_start, m_end, by = "name_quad")$name_quad))
@@ -76,6 +76,9 @@ sp_site = rbind.data.frame(tbi_st.end$TBI,
 colnames(sp_site) = rownames(m_start)
 sp_site = t(sp_site)
 
+# Save the table BCD mat
+write.csv (sp_site, here::here("outputs", "figures", "table_tbi.csv"))
+
 # significance table for global analysis
 bc_sign = cbind(tbi_st.end$BCD.summary, # 
                 tbi_st.end$t.test_B.C)
@@ -93,14 +96,21 @@ theme<-theme(panel.background = element_blank(),
              axis.ticks=element_line(colour="black"),
              plot.margin=unit(c(1,1,1,1),"line"))
 
-# Plot
+# Plot & save
+jpeg (here::here ("outputs", "figures", "figure_tbi.jpg")) # Open jpeg file
 tbi.plot = plot(tbi_st.end, s.names=rownames(tbi_st.end$BCD.mat)  ,  #plot B-C
                 col.rim = "coral", 
                 pch.loss=19 , 
                 pch.gain=15, 
                 main="Temporal change in beta diversity", 
                 xlim=c(0,0.4), ylim=c(0,0.4))
+dev.off() # 3. Close the file
 
-
-# Save the plot
-
+pdf(here::here("outputs", "figures", "figure_tbi.pdf"))
+tbi.plot = plot(tbi_st.end, s.names=rownames(tbi_st.end$BCD.mat)  ,  #plot B-C
+                col.rim = "coral", 
+                pch.loss=19 , 
+                pch.gain=15, 
+                main="Temporal change in beta diversity", 
+                xlim=c(0,0.4), ylim=c(0,0.4))
+dev.off() # 3. Close the file

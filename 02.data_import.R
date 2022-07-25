@@ -282,7 +282,7 @@ sb_data_cast[is.na(sb_data_cast)] = 0 # replace NA with 0
 sb_data_cast = sb_data_cast %>%
   mutate (obs_quad = rowSums(sb_data_cast[, -(1:4)])) %>%
   filter(obs_quad != 0) %>%
-  select (-obs_quad)
+  dplyr::select (-obs_quad)
 
 as.data.frame(table(sb_data_cast[,1:3])) %>%
   arrange(combe, placette)
@@ -293,8 +293,14 @@ write_csv( sb_data_cast,
 
 
 
+## SP name revision
+write_csv( full.sp.list %>% mutate(sp = str_replace(sp, "_", " ")), 
+           here::here ("data", "processed", "species.list.csv"))
 
-
+colnames(full.sp.list)  = "sp"
+t = full.sp.list %>%
+  mutate(sp = str_replace(sp, "_", " "))
+TPL(t)
 
 
 

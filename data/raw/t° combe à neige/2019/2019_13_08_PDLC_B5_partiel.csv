@@ -1,0 +1,28 @@
+1-Wire/iButton Part Number: DS1922L
+1-Wire/iButton Registration Number: 9800000056F66D41
+Mission in Progress?  true
+SUTA Mission?  false
+Waiting for Temperature Alarm?  false
+Sample Rate:  Every 600 second(s)
+Mission Start Time:  Mon Aug 12 17:00:01 CEST 2019
+Mission Sample Count:  141
+Roll Over Enabled?  true(no rollover occurred)
+First Sample Timestamp:  Mon Aug 12 17:00:01 CEST 2019
+Total Mission Samples:  141
+Total Device Samples:  6400
+Temperature Logging:  0.5 C
+Temperature High Alarm:  disabled
+Temperature Low Alarm:  disabled
+Data Logging:  disabled
+Data High Alarm:  disabled
+Data Low Alarm:  disabled
+
+Date/Time,Unit,Value
+12/08/19 17:00:01,C,9,054
+12/08/19 20:00:01,C,8,052
+12/08/19 23:00:01,C,7,05
+13/08/19 02:00:01,C,6,047
+13/08/19 05:00:01,C,4,043
+13/08/19 08:00:01,C,4,043
+13/08/19 11:00:01,C,6,549
+13/08/19 14:00:01,C,11,559

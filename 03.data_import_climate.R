@@ -96,7 +96,7 @@ res = spTransform(localisation, CRS(coord))
 site = as.data.frame(res)
 clim.data = raster::extract (env.var, res, df = T) %>%
   mutate (combe = site[,1]) %>% 
-  select(-ID, 
+  dplyr::select(-ID, 
          -PET_Winter_Pyrenees) # equal 0
 
 # save the dataset

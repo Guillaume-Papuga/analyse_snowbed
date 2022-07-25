@@ -13,7 +13,7 @@ df = read.csv(here::here ("data", "processed", "sb_data_cast.csv"),
 df = df %>% # first we delete the placette n°1 from cre
   mutate(name.pla = interaction(combe, placette)) %>%
   filter (name.pla != "cre.1") %>%
-  select (-name.pla)
+  dplyr::select (-name.pla)
 
 #######################################################
 ### Create the matrix
@@ -34,7 +34,7 @@ df_melt = df_melt %>%
   mutate (detect.na = is.na (start)) %>% # detect species with NA in the first year (absent)
   filter (detect.na != TRUE) %>% # delete those ligne
   replace_na(list(end = 0)) %>% # remplace missing species by 0 in the end
-  select (-detect.na) %>% # delete the column
+  dplyr::select (-detect.na) %>% # delete the column
   mutate (freq_change = end - start) %>% # compute the change in frequency
   dplyr::rename (species = variable)
 
@@ -154,6 +154,11 @@ wl = ggplot()+
   
 wl
 
+# Save the plot
+jpeg (here::here ("outputs", "figures", "figure_winner.loser.jpg")) # Open jpeg file
+print(wl)
+dev.off() # 3. Close the file
 
-
-
+pdf(here::here("outputs", "figures", "figure_winner.loser.pdf"))
+print(wl)
+dev.off()

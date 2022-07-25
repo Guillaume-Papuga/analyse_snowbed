@@ -66,13 +66,20 @@ pdf(here::here("outputs", "figures", "appendix_total.community.analysis.pdf"))
 print(pcoa_plot)
 dev.off()
 
+jpeg (here::here ("outputs", "figures", "appendix_total.community.analysis.jpg")) # Open jpeg file
+print(pcoa_plot)
+dev.off() # 3. Close the file
+
+
 ######################### B. Exclude CRE1 and run the analysis again ######################################
 ### create the table that summarize the raw analysis
 # first we delete the placette n°1 from cre
 df = df %>%
   mutate(name.pla = interaction(combe, placette)) %>%
   filter (name.pla != "cre.1") %>%
-  select (-name.pla)
+  dplyr::select (-name.pla)
+
+df = df[, colSums(df != 0) > 0] # delete columns (= species) that have never been onbserved on that subset of the data
 
 dist = ecodist::distance(df[,-(1:3)], "bray-curtis") # create a distance matrix
 coord.an = pcoa(dist)
@@ -123,25 +130,33 @@ pcoa_plot <- ggplot(df_pcoa, aes(x = pc1, y = pc2, colour = combe)) +  # classic
 
 pcoa_plot # show the plot
 
+# Save the plot
+jpeg(here::here("outputs", "figures", "figure_plant.community.analysis.jpg"))
+print(pcoa_plot)
+dev.off()
+
+pdf(here::here("outputs", "figures", "figure_plant.community.analysis.pdf"))
+print(pcoa_plot)
+dev.off()
 
 ######################### C. Statistical analysis without CRE1 ############################################
 
 ### Statistical analysis
-adonis(formula = dist~df_pcoa$combe + df_pcoa$placette %in% df_pcoa$combe) ## multivariate analysis of variance (nested factors)
-
+multi.test = as.data.frame(adonis(formula = dist~df_pcoa$combe + df_pcoa$placette %in% df_pcoa$combe) $aov.tab) ## multivariate analysis of variance (nested factors)
+write.table(multi.test, here::here("outputs", "figures", "table_permanova.csv"))
 
 ######################### D. Heatmap graphical representation #############################################
 ### Define the data
 data.hm = df %>% # first we delete the placette n°1 from cre
   mutate(name.pla = interaction(combe, placette)) %>%
   filter (name.pla != "cre.1") %>%
-  select (-name.pla)
+  dplyr::select (-name.pla,
+                 -year) 
 
+data.hm = data.hm[, colSums(data.hm != 0) > 0] # delete columns (= species) that have never been onbserved on that subset of the data
 
 rownom = paste(data.hm$combe,data.hm$placette,data.hm$year, sep="_") # unique identifier of each line
 rownames(data.hm) = make.names(rownom, unique=TRUE)
-
-
 
 ### Create the factor to categorize data 
 fac = data.hm[,1:2]
@@ -186,7 +201,41 @@ hm.plot = pheatmap(t(data.hm.sign.sp.h), # dataset
               clustering_distance_rows = taxa.dist, # distance matrix btw species
               clustering_distance_cols = combe.dist, # distance matrix btw sites
               clustering_method = 'ward.D', 
-              fontsize = 8, cutree_cols = 6, cutree_rows = 4, 
+              fontsize = 6, cutree_cols = 6, cutree_rows = 4, 
               show_colnames = F)
 
+### Save the plot
+jpeg (here::here ("outputs", "figures", "figure_hm.plot.jpg")) # Open jpeg file
+print(hm.plot)
+dev.off() # 3. Close the file
+
+pdf(here::here("outputs", "figures", "figure_hm.plot.pdf"))
+print(hm.plot)
+dev.off()
+
+######################### E. Multipatt analysis #############################################
+### Define the data
+m.data = df %>% # species dataframe
+  dplyr::select (-combe, -placette, -year)
+
+m.group = df$combe # clustering groups
+
+## Runs the combination analysis using IndVal.g as statistic
+mltp.mod = multipatt(m.data, m.group, control = how(nperm=999)) 
+
+
+## Lists those species with significant association to one combination, 
+## including indval components.
+summary(mltp.mod, indvalcomp=TRUE)
+
+indisp.sign = as.data.table(mltp.mod$sign, keep.rownames=TRUE) %>% # get the significance table
+  mutate (p.val.cor = p.adjust(p.value, method="BH")) %>% # compute p.value correction (BH)
+  filter(p.val.cor < 0.05)  # delete corrected species
+
+indisp.sign[,"combe.nb"] = rowSums(indisp.sign[,2:9])
+
+indisp.sign = indisp.sign %>%
+  filter (combe.nb<2) %>% # select species that only contribute to ONE site
+  arrange (s.arb, s.cat, s.cre, s.pdlc, s.pla, s.por, s.rat, s.ull)
+  
 
