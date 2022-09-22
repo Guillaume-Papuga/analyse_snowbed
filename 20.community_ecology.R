@@ -11,7 +11,8 @@ df.flo = read.csv(here::here ("data", "processed", "sb_data_cast.csv"),
                   head = T, sep = ",", dec = ".")
 df.flo = df.flo %>%
   filter(year == 2019) %>% # keep one year 
-  arrange (combe) # sort the table by combe name
+  arrange (combe) %>% # sort the table by combe name
+  dplyr::filter (!(combe == "cre" & placette == 1))
 
 df.clim = read.csv(here::here ("data", "processed", "clim.data.csv"),  # load the file
                    head = T, sep = ",", dec = ".") %>%
@@ -19,6 +20,9 @@ df.clim = read.csv(here::here ("data", "processed", "clim.data.csv"),  # load th
   mutate(combe = replace(combe, combe == "cas", "pdlc")) %>% # and correct 'Pas de la Case'
   filter(combe != "por") # delete Portillon from the climatic dataset (no data)
   
+df.microclim = read.csv(here::here ("data", "processed", "synth.microclim.rda.csv"),  # load the file
+                        head = T, sep = " ", dec = ".") %>%
+  dplyr::select(site, plot, n_vege, n_f.day, ht.95)
 
 ######################### A. Select ecological variables ######################################
 ### 1. Multivariate analysis 
@@ -97,16 +101,29 @@ clim.full = clim.select %>%
                   t_max = Temperature_max_Summer_Pyrenees, 
                   t_min = Temperature_min_Summer_Pyrenees)
 
+######### REVIEW UPDATE ###########
+######### Microclimate ############
+
+clim.full = clim.full %>%
+  inner_join(df.microclim, 
+            by = c("combe" = "site", 
+                   "placette" = "plot")) %>%
+  dplyr:: rename (veg_per = n_vege, # Rename the variables to ease the reading
+                  f_day = n_f.day, 
+                  loc.t_max = ht.95)
+
 ######################### B. Run redundancy analysis ######################################
 ### 1. Multivariate analysis 
 # Fit a first model
 rda.clim = rda(df.flo %>% dplyr::select (-combe, -placette, -year) ~ 
-                 pet + rad_sum + prec + t_max + t_min, clim.full, dist="bray")
+                 pet + rad_sum + prec + t_max + t_min + veg_per + f_day + loc.t_max, 
+               clim.full, dist="bray")
 vif.cca(rda.clim) # Variance inflation factor
 
-# Exclude pet and ft a second model
+# Exclude pet and fit a second model
 rda.clim = rda(df.flo %>% dplyr::select (-combe, -placette, -year) ~ 
-                 rad_sum + prec + t_max + t_min, clim.full, dist="bray")
+                 rad_sum + prec + t_max + t_min + veg_per + f_day + loc.t_max, 
+               clim.full, dist="bray")
 vif.cca(rda.clim) # Variance inflation factor
 
 # Test the significance of each axis
@@ -194,11 +211,11 @@ rda.plot = ggplot(df1, aes(x=RDA1, y=RDA2)) +
 rda.plot
 
 # e. Save the plot
-jpeg (here::here ("outputs", "figures", "figure_rda.plot.jpg")) # Open jpeg file
+jpeg (here::here ("outputs", "figures", "figure_rda.plot_update.jpg")) # Open jpeg file
 print(rda.plot)
 dev.off() # 3. Close the file
 
-pdf(here::here("outputs", "figures", "figure_rda.plot.pdf"))
+pdf(here::here("outputs", "figures", "figure_rda.plot_update.pdf"))
 print(rda.plot)
 dev.off()
 
